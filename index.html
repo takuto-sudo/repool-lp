@@ -222,26 +222,26 @@
   /* 比較用ラベル */
   .cmp-label{text-align:center;margin:64px auto 0;font-family:"Spline Sans Mono",monospace;font-size:12px;letter-spacing:.12em;color:var(--ink-faint);text-transform:uppercase}
   .cmp-label::before,.cmp-label::after{content:"";display:inline-block;width:34px;height:1px;background:var(--line);vertical-align:middle;margin:0 12px}
-  /* 別案：ジグザグ・タイムライン */
-  .zz{position:relative;max-width:900px;margin:26px auto 0}
-  .zz::before{content:"";position:absolute;top:24px;bottom:24px;left:50%;transform:translateX(-50%);width:2px;background:var(--line)}
-  .zz-step{position:relative;display:grid;grid-template-columns:1fr 72px 1fr;align-items:center;margin-bottom:16px}
-  .zz-num{grid-column:2;justify-self:center;width:56px;height:56px;border-radius:50%;background:linear-gradient(140deg,var(--green),var(--green-deep));color:#fff;display:grid;place-items:center;font-family:"Spline Sans Mono",monospace;font-weight:700;font-size:20px;box-shadow:0 12px 24px -10px rgba(11,143,91,.55),0 0 0 6px var(--canvas-2);z-index:1}
-  .zz-card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:16px 20px;box-shadow:var(--shadow-sm);transition:.25s}
-  .zz-card:hover{box-shadow:var(--shadow)}
-  .zz-step:nth-child(odd) .zz-card{grid-column:1;text-align:right}
-  .zz-step:nth-child(even) .zz-card{grid-column:3;text-align:left}
-  .zz-step-label{font-family:"Spline Sans Mono",monospace;font-size:11px;font-weight:700;letter-spacing:.1em;color:var(--green-deep);display:block;margin-bottom:2px}
-  .zz-card h3{font-size:16px;margin-bottom:3px;display:flex;align-items:center;gap:8px}
-  .zz-step:nth-child(odd) .zz-card h3{justify-content:flex-end}
-  .zz-card p{font-size:13px;color:var(--ink-soft);line-height:1.6}
-  .zz-ic{width:24px;height:24px;color:var(--green-deep);flex:none}
-  @media(max-width:700px){
-    .zz::before{left:28px}
-    .zz-step{grid-template-columns:56px 1fr;column-gap:16px;margin-bottom:12px}
-    .zz-num{grid-column:1;width:56px;height:56px}
-    .zz-step:nth-child(odd) .zz-card,.zz-step:nth-child(even) .zz-card{grid-column:2;text-align:left}
-    .zz-step:nth-child(odd) .zz-card h3{justify-content:flex-start}
+  /* 別案：横並びステップ（番号ウォーターマーク＋矢印） */
+  .hf{display:flex;align-items:stretch;gap:0;margin-top:26px}
+  .hf-step{flex:1 1 0;min-width:0;background:var(--card);border:1px solid var(--line);border-radius:18px;padding:26px 20px 22px;text-align:center;position:relative;overflow:hidden;box-shadow:var(--shadow-sm);transition:.25s}
+  .hf-step::after{content:"";position:absolute;left:0;right:0;top:0;height:3px;background:linear-gradient(90deg,var(--green),var(--lime));opacity:0;transition:.25s}
+  .hf-step:hover{transform:translateY(-5px);box-shadow:var(--shadow)}
+  .hf-step:hover::after{opacity:1}
+  .hf-step .gn{position:absolute;top:-8px;right:10px;font-family:"Spline Sans Mono",monospace;font-weight:700;font-size:60px;line-height:1;color:var(--canvas-2);z-index:0}
+  .hf-ic{position:relative;z-index:1;width:56px;height:56px;border-radius:16px;margin:6px auto 16px;display:grid;place-items:center;background:linear-gradient(140deg,var(--green),var(--green-deep));color:#fff;box-shadow:0 12px 24px -10px rgba(11,143,91,.5)}
+  .hf-ic svg{width:27px;height:27px}
+  .hf-body{position:relative;z-index:1}
+  .hf-step h3{font-size:15.5px;margin-bottom:7px;line-height:1.4}
+  .hf-step p{font-size:12.5px;color:var(--ink-soft);line-height:1.65}
+  .hf-arrow{flex:none;align-self:center;display:flex;align-items:center;color:var(--green);padding:0 4px}
+  @media(max-width:920px){
+    .hf{flex-direction:column}
+    .hf-arrow{transform:rotate(90deg);padding:6px 0;align-self:center}
+    .hf-step{text-align:left;display:flex;align-items:center;gap:16px;padding:18px 20px}
+    .hf-ic{margin:0;flex:none}
+    .hf-body{flex:1}
+    .hf-step .gn{font-size:50px;top:-4px}
   }
 
   /* 実績 */
@@ -583,46 +583,35 @@
     </div>
 
     <div class="cmp-label">別デザイン案（比較用）</div>
-    <div class="zz">
-      <div class="zz-step">
-        <div class="zz-num">1</div>
-        <div class="zz-card">
-          <span class="zz-step-label">STEP 01</span>
-          <h3><span class="zz-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 17H7A5 5 0 0 1 7 7h2M15 7h2a5 5 0 0 1 0 10h-2M8 12h8"/></svg></span>ウォレットを接続</h3>
-          <p>ご自身のウォレットをつなぐだけ。</p>
-        </div>
+    <div class="hf">
+      <div class="hf-step rv">
+        <span class="gn">01</span>
+        <span class="hf-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 17H7A5 5 0 0 1 7 7h2M15 7h2a5 5 0 0 1 0 10h-2M8 12h8"/></svg></span>
+        <div class="hf-body"><h3>ウォレットを接続</h3><p>ウォレットをつなぐだけ</p></div>
       </div>
-      <div class="zz-step">
-        <div class="zz-num">2</div>
-        <div class="zz-card">
-          <span class="zz-step-label">STEP 02</span>
-          <h3><span class="zz-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v10m0 0l-4-4m4 4l4-4M5 17v2a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-2"/></svg></span>資金を預ける</h3>
-          <p>$1,000相当から、送るだけ。</p>
-        </div>
+      <span class="hf-arrow"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg></span>
+      <div class="hf-step rv">
+        <span class="gn">02</span>
+        <span class="hf-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v10m0 0l-4-4m4 4l4-4M5 17v2a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-2"/></svg></span>
+        <div class="hf-body"><h3>資金を預ける</h3><p>$1,000相当から</p></div>
       </div>
-      <div class="zz-step">
-        <div class="zz-num">3</div>
-        <div class="zz-card">
-          <span class="zz-step-label">STEP 03</span>
-          <h3><span class="zz-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a9 9 0 1 1-9-9M21 3v6h-6"/></svg></span>RePoolが自動運用</h3>
-          <p>最適なプールへ自動で配分・調整。</p>
-        </div>
+      <span class="hf-arrow"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg></span>
+      <div class="hf-step rv">
+        <span class="gn">03</span>
+        <span class="hf-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a9 9 0 1 1-9-9M21 3v6h-6"/></svg></span>
+        <div class="hf-body"><h3>RePoolが自動運用</h3><p>最適なプールへ自動配分</p></div>
       </div>
-      <div class="zz-step">
-        <div class="zz-num">4</div>
-        <div class="zz-card">
-          <span class="zz-step-label">STEP 04</span>
-          <h3><span class="zz-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 17l6-6 4 4 8-8M14 7h7v7"/></svg></span>手数料収入を受け取る</h3>
-          <p>取引のたびに積み上がる。</p>
-        </div>
+      <span class="hf-arrow"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg></span>
+      <div class="hf-step rv">
+        <span class="gn">04</span>
+        <span class="hf-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 17l6-6 4 4 8-8M14 7h7v7"/></svg></span>
+        <div class="hf-body"><h3>手数料収入を受け取る</h3><p>取引のたびに積み上がる</p></div>
       </div>
-      <div class="zz-step">
-        <div class="zz-num">5</div>
-        <div class="zz-card">
-          <span class="zz-step-label">STEP 05</span>
-          <h3><span class="zz-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21V11m0 0l-4 4m4-4l4 4M5 7V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v2"/></svg></span>いつでも出金</h3>
-          <p>元本も手数料もロックなし。</p>
-        </div>
+      <span class="hf-arrow"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg></span>
+      <div class="hf-step rv">
+        <span class="gn">05</span>
+        <span class="hf-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21V11m0 0l-4 4m4-4l4 4M5 7V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v2"/></svg></span>
+        <div class="hf-body"><h3>いつでも出金</h3><p>元本も手数料もロックなし</p></div>
       </div>
     </div>
   </div>
