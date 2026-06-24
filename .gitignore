@@ -1,0 +1,4 @@
+# 公開しないファイル（ローカル保持）
+index.backup-*.html
+dashboard.html
+.DS_Store
