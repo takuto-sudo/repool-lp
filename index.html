@@ -244,7 +244,7 @@
   }
 
   /* ご利用の流れ：動画帯に合わせてダーク化 */
-  #how{background:radial-gradient(130% 130% at 50% 30%, #0e2c1d 0%, #071611 55%, #050f09 100%);padding-bottom:40px}
+  #how{background:#06140f;padding-bottom:40px}
   #how .scn{border:none;box-shadow:none;background:
     radial-gradient(460px 320px at 50% 44%, rgba(46,224,143,.16), transparent 70%),
     radial-gradient(circle, rgba(255,255,255,.05) 1px, transparent 1.4px) 0 0/24px 24px}
@@ -254,8 +254,8 @@
   #how .scn-mi b{color:#e6efe9}
 
   /* 動画バンド（背景と同化・全幅ダーク） */
-  .vband{position:relative;overflow:hidden;background:radial-gradient(130% 130% at 50% 30%, #0e2c1d 0%, #071611 55%, #050f09 100%);padding-top:0}
-  .vstage{position:relative;width:100%;height:clamp(300px,44vw,560px)}
+  .vband{position:relative;overflow:hidden;background:#06140f}
+  .vstage{position:relative;width:100%;height:clamp(300px,44vw,560px);background:radial-gradient(115% 130% at 50% 44%, #11362444 0%, #06140f 68%)}
   .vstage video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;mix-blend-mode:screen;
     -webkit-mask-image:radial-gradient(ellipse 82% 80% at 50% 50%, #000 42%, transparent 100%);
     mask-image:radial-gradient(ellipse 82% 80% at 50% 50%, #000 42%, transparent 100%)}
@@ -556,11 +556,21 @@
 </section>
 
 <!-- 3ステップ -->
+<!-- 動画バンド（背景と同化・全幅ダーク） -->
+<section class="vband">
+  <div class="vstage rv">
+    <video autoplay loop muted playsinline poster="assets/flow-bg-poster.jpg">
+      <source src="assets/flow-bg.mp4" type="video/mp4">
+    </video>
+    <div class="vstage-title"><h2><span class="nb">預けるだけで、</span><span class="nb">あとはおまかせ。</span></h2></div>
+  </div>
+</section>
+
 <section class="sec sec-dark" id="how">
   <div class="wrap">
     <div class="sec-head">
       <span class="eyebrow">ご利用の流れ</span>
-      <h2><span class="nb">つないで預けたら、</span><span class="nb">あとはおまかせ。</span></h2>
+      <h2><span class="nb">かんたん、</span><span class="nb">5ステップ。</span></h2>
       <p>ウォレットをつないで預けたら、運用・手数料の積み上げ・出金まで自動で流れます。</p>
     </div>
 
@@ -597,16 +607,6 @@
       <div class="scn-mi"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21V11m0 0l-4 4m4-4l4 4M5 7V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v2"/></svg></span><b>いつでも出金</b></div>
     </div>
 
-  </div>
-</section>
-
-<!-- 動画バンド（背景と同化・全幅ダーク） -->
-<section class="vband">
-  <div class="vstage rv">
-    <video autoplay loop muted playsinline poster="assets/flow-bg-poster.jpg">
-      <source src="assets/flow-bg.mp4" type="video/mp4">
-    </video>
-    <div class="vstage-title"><h2><span class="nb">預けるだけで、</span><span class="nb">あとはおまかせ。</span></h2></div>
   </div>
 </section>
 
