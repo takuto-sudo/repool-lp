@@ -196,20 +196,23 @@
   .step .ghost{position:absolute;right:-6px;top:-22px;font-family:"Spline Sans Mono",monospace;font-weight:700;font-size:88px;color:var(--canvas-2);z-index:0;line-height:1}
   .step>*{position:relative;z-index:1}
 
-  /* ご利用の流れ（5ステップ・フロー図） */
-  .flow{display:flex;align-items:stretch;justify-content:center;gap:4px;margin-top:8px}
-  .flow-step{flex:1 1 0;min-width:0;background:var(--card);border:1px solid var(--line);border-radius:16px;padding:24px 16px 22px;text-align:center;position:relative;box-shadow:var(--shadow-sm);transition:.25s}
-  .flow-step:hover{transform:translateY(-4px);box-shadow:var(--shadow)}
-  .flow-step .fn{position:absolute;top:11px;right:14px;font-family:"Spline Sans Mono",monospace;font-size:11.5px;font-weight:700;color:var(--ink-faint)}
-  .flow-ic{width:50px;height:50px;margin:4px auto 14px;border-radius:14px;display:grid;place-items:center;background:linear-gradient(140deg,var(--green),var(--green-deep));color:#fff;box-shadow:0 10px 22px -10px rgba(11,143,91,.55)}
-  .flow-ic svg{width:25px;height:25px}
-  .flow-step h3{font-size:15px;line-height:1.45;margin-bottom:8px}
-  .flow-step p{font-size:12.5px;color:var(--ink-soft);line-height:1.7}
-  .flow-arrow{flex:none;display:flex;align-items:center;justify-content:center;color:var(--green)}
+  /* ご利用の流れ（タイムライン図） */
+  .tl{position:relative;display:flex;margin-top:30px}
+  .tl::before{content:"";position:absolute;top:40px;left:10%;right:10%;height:3px;background:linear-gradient(90deg,var(--green-deep),var(--lime));z-index:0;border-radius:3px}
+  .tl-step{flex:1;text-align:center;position:relative;z-index:1;padding:0 6px}
+  .tl-node{width:80px;height:80px;border-radius:50%;margin:0 auto 18px;display:grid;place-items:center;background:linear-gradient(140deg,var(--green),var(--green-deep));color:#fff;box-shadow:0 14px 28px -12px rgba(11,143,91,.6),0 0 0 6px var(--canvas-2);transition:.25s}
+  .tl-step:hover .tl-node{transform:translateY(-4px) scale(1.04)}
+  .tl-node svg{width:34px;height:34px}
+  .tl-num{font-family:"Spline Sans Mono",monospace;font-size:12px;font-weight:700;color:var(--green-deep);display:block;margin-bottom:3px;letter-spacing:.04em}
+  .tl-step h3{font-size:17px;margin-bottom:4px}
+  .tl-step p{font-size:12.5px;color:var(--ink-soft);line-height:1.6}
   @media(max-width:920px){
-    .flow{flex-direction:column;align-items:stretch;gap:0}
-    .flow-arrow{transform:rotate(90deg);padding:10px 0}
-    .flow-step{padding:20px 22px}
+    .tl{flex-direction:column;align-items:stretch;margin-top:14px}
+    .tl::before{top:34px;bottom:34px;left:30px;right:auto;width:3px;height:auto}
+    .tl-step{display:flex;flex-direction:row;align-items:center;gap:18px;text-align:left;padding:12px 0}
+    .tl-node{width:60px;height:60px;margin:0;flex:none}
+    .tl-node svg{width:26px;height:26px}
+    .tl-txt{flex:1}
   }
 
   /* 実績 */
@@ -512,40 +515,26 @@
       <h2><span class="nb">つないで預けたら、</span><span class="nb">あとはおまかせ。</span></h2>
       <p>面倒なプール選びも、日々の操作も不要。最初のひと手間だけで、あとはRePoolが自動で続けます。</p>
     </div>
-    <div class="flow">
-      <div class="flow-step rv">
-        <span class="fn">01</span>
-        <span class="flow-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 17H7A5 5 0 0 1 7 7h2M15 7h2a5 5 0 0 1 0 10h-2M8 12h8"/></svg></span>
-        <h3>ウォレットを接続</h3>
-        <p>ご自身のウォレットをつなぐだけ。準備はLINEでサポートします。</p>
+    <div class="tl">
+      <div class="tl-step rv">
+        <div class="tl-node"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 17H7A5 5 0 0 1 7 7h2M15 7h2a5 5 0 0 1 0 10h-2M8 12h8"/></svg></div>
+        <div class="tl-txt"><span class="tl-num">01</span><h3>接続</h3><p>ウォレットをつなぐ</p></div>
       </div>
-      <span class="flow-arrow"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
-      <div class="flow-step rv">
-        <span class="fn">02</span>
-        <span class="flow-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v10m0 0l-4-4m4 4l4-4M5 17v2a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-2"/></svg></span>
-        <h3>資金を預ける</h3>
-        <p>$1,000相当から。送るだけで準備は完了です。</p>
+      <div class="tl-step rv">
+        <div class="tl-node"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v10m0 0l-4-4m4 4l4-4M5 17v2a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-2"/></svg></div>
+        <div class="tl-txt"><span class="tl-num">02</span><h3>預ける</h3><p>$1,000相当から</p></div>
       </div>
-      <span class="flow-arrow"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
-      <div class="flow-step rv">
-        <span class="fn">03</span>
-        <span class="flow-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a9 9 0 1 1-9-9M21 3v6h-6"/></svg></span>
-        <h3>RePoolが自動運用</h3>
-        <p>最適なプールへ自動で配分・調整。操作は要りません。</p>
+      <div class="tl-step rv">
+        <div class="tl-node"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a9 9 0 1 1-9-9M21 3v6h-6"/></svg></div>
+        <div class="tl-txt"><span class="tl-num">03</span><h3>自動運用</h3><p>RePoolにおまかせ</p></div>
       </div>
-      <span class="flow-arrow"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
-      <div class="flow-step rv">
-        <span class="fn">04</span>
-        <span class="flow-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 17l6-6 4 4 8-8M14 7h7v7"/></svg></span>
-        <h3>手数料収入を受け取る</h3>
-        <p>取引のたびに手数料が積み上がり、月次レポートで確認できます。</p>
+      <div class="tl-step rv">
+        <div class="tl-node"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 17l6-6 4 4 8-8M14 7h7v7"/></svg></div>
+        <div class="tl-txt"><span class="tl-num">04</span><h3>手数料</h3><p>取引のたびに積み上がる</p></div>
       </div>
-      <span class="flow-arrow"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
-      <div class="flow-step rv">
-        <span class="fn">05</span>
-        <span class="flow-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21V11m0 0l-4 4m4-4l4 4M5 7V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v2"/></svg></span>
-        <h3>いつでも出金</h3>
-        <p>元本も手数料も、ロックなしでいつでも引き出せます。</p>
+      <div class="tl-step rv">
+        <div class="tl-node"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21V11m0 0l-4 4m4-4l4 4M5 7V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v2"/></svg></div>
+        <div class="tl-txt"><span class="tl-num">05</span><h3>出金</h3><p>いつでも引き出しOK</p></div>
       </div>
     </div>
   </div>
