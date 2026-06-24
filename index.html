@@ -243,16 +243,12 @@
     .scn-mi b{font-size:15px;color:var(--ink)}
   }
 
-  /* 動画埋め込み（アプリ風ウィンドウ枠） */
-  .vframe{max-width:920px;margin:34px auto 0;border-radius:16px;overflow:hidden;border:1px solid var(--line);box-shadow:0 34px 70px -30px rgba(10,46,30,.42);background:#fff}
-  .vframe-bar{height:40px;background:linear-gradient(#fbfbf7,#f0efe4);border-bottom:1px solid var(--line);display:flex;align-items:center;gap:8px;padding:0 16px}
-  .vframe-bar i{width:11px;height:11px;border-radius:50%;display:block;flex:none}
-  .vframe-bar i:nth-child(1){background:#ff5f57}
-  .vframe-bar i:nth-child(2){background:#febc2e}
-  .vframe-bar i:nth-child(3){background:#28c840}
-  .vframe-bar .addr{margin-left:12px;flex:1;max-width:340px;height:22px;border-radius:7px;background:#fff;border:1px solid var(--line);display:flex;align-items:center;padding:0 11px;font-family:"Spline Sans Mono",monospace;font-size:11.5px;color:var(--ink-faint)}
-  .vframe-video{display:block;width:100%;aspect-ratio:16/9;object-fit:cover;background:var(--canvas-2)}
-  @media(max-width:560px){.vframe-bar{height:34px}.vframe-bar .addr{font-size:10px}}
+  /* 動画（背景と同化・発光ブレンド） */
+  .vstage{position:relative;max-width:980px;margin:30px auto 0;aspect-ratio:16/9;border-radius:26px;overflow:hidden;
+    background:radial-gradient(120% 120% at 50% 35%, #103122 0%, #081a10 55%, #050f09 100%)}
+  .vstage video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;mix-blend-mode:screen;
+    -webkit-mask-image:radial-gradient(ellipse 78% 72% at 50% 50%, #000 50%, transparent 100%);
+    mask-image:radial-gradient(ellipse 78% 72% at 50% 50%, #000 50%, transparent 100%)}
 
   /* 実績 */
   .proof{display:grid;grid-template-columns:1fr 1fr;gap:22px}
@@ -588,10 +584,9 @@
       <div class="scn-mi"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21V11m0 0l-4 4m4-4l4 4M5 7V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v2"/></svg></span><b>いつでも出金</b></div>
     </div>
 
-    <!-- 動画埋め込み（アプリ風ウィンドウ・仮置き動画／差し替え可） -->
-    <div class="vframe rv">
-      <div class="vframe-bar"><i></i><i></i><i></i><span class="addr">app.repool.org</span></div>
-      <video class="vframe-video" autoplay loop muted playsinline poster="assets/flow-bg-poster.jpg">
+    <!-- 動画（背景と同化・発光ブレンド） -->
+    <div class="vstage rv">
+      <video autoplay loop muted playsinline poster="assets/flow-bg-poster.jpg">
         <source src="assets/flow-bg.mp4" type="video/mp4">
       </video>
     </div>
